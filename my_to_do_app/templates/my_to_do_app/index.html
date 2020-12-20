@@ -53,7 +53,8 @@
 
             <div class="toDoDiv">
                 <ul class="list-group">
-                    {% for todo in todos %}
+                    {# {% for todo in todos %} #}
+                    {% for todo in object_list %}
                     {% if todo.isDone == False %}
                     <form action="./doneTodo/" method="GET">
                         <div class="input-group" name='todo1'>
