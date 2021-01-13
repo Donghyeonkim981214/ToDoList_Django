@@ -1,4 +1,4 @@
-# ToDoList_Django
+# ToDoList_Django - class-based views 
 
 이 repository 의 내용은 'Django 한그릇 뚝딱'(문범우 지음, 비제이리퍼블릭)의 chapter 2_ ToDoList 내용을 연습한 것입니다.
 해당 repository는 저자님께 직접 허가를 구하고 올린 것이며 <Django 한그릇뚝딱>에 대한 모든 source code에 대한 권한은 '문범우'님에게 있습니다.
