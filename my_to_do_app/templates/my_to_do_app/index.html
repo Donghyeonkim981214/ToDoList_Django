@@ -1,4 +1,5 @@
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
 
@@ -11,27 +12,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <style>
-        .content{
+        .content {
             height: 75%;
         }
-        .messageDiv{
+
+        .messageDiv {
             margin-top: 20px;
             margin-bottom: 50px;
         }
-        .toDoDiv{
 
-        }
-        .custom-btn{
+        .toDoDiv {}
+
+        .custom-btn {
             font-size: 10px;
         }
-        .panel-footer{
-            height:10%;
-            color:gray;
+
+        .panel-footer {
+            height: 10%;
+            color: gray;
         }
     </style>
 
     <title>To-Do</title>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -43,7 +47,8 @@
             <div class="messageDiv">
                 <form action="./createTodo/" method="POST">{% csrf_token %}
                     <div class="input-group">
-                        <input id="todoContent" name="todoContent" type="text" class="form-control" placeholder="메모할 내용을 적어주세요">
+                        <input id="todoContent" name="todoContent" type="text" class="form-control"
+                            placeholder="메모할 내용을 적어주세요">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">메모하기!</button>
                         </span>
@@ -76,4 +81,5 @@
         </div>
     </div>
 </body>
+
 </html>
