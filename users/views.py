@@ -1,25 +1,23 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 
-from django.views import View
+from django.views.generic import FormView
+from django.urls import reverse_lazy
 
 from . import forms
 
-class login_view(View):
-    def get(self, request):
-        form = forms.LoginForm()
-        return render(request, "users/login.html", {"form": form})
+class login_view(FormView):
+    template_name = "users/login.html"
+    form_class = forms.LoginForm
+    success_url = reverse_lazy("home:index")
 
-    def post(self, request):
-        form = forms.LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect(reverse("home:index"))
-        return render(request, "users/login.html", {"form": form})
+    def form_valid(self, form):
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(self.request, username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)
 
 def log_out(request):
     logout(request)
