@@ -5,12 +5,12 @@ from django.views import View
 
 from . import forms
 
-def login_view(request):
-    if request.method == "GET":
+class login_view(View):
+    def get(self, request):
         form = forms.LoginForm()
         return render(request, "users/login.html", {"form": form})
 
-    elif request.method == "POST":
+    def post(self, request):
         form = forms.LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get("username")
