@@ -25,7 +25,7 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model = models.User
-        fields = ("first_name", "last_name", "email", "username")
+        fields = ("first_name", "last_name", "email", "username", "gender", "birthday")
 
     def clean_check_password(self):
         password = self.cleaned_data.get("password")
