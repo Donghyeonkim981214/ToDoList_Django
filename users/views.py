@@ -8,6 +8,8 @@ from django.views.generic import FormView
 from django.views.generic import DetailView
 from . import models as user_models
 
+from django.views.generic import UpdateView
+
 from . import forms
 
 class log_in(LoginView):
@@ -37,3 +39,18 @@ class user_profile(DetailView):
         context = super().get_context_data(**kwargs)
         print(self.kwargs)
         return context
+
+class profile_update(UpdateView):
+    model = user_models.User
+    template_name = "users/update.html"
+    fields = (
+        "first_name",
+        "last_name",
+        "avatar",
+        "gender",
+        "bio",
+        "birthday",
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
