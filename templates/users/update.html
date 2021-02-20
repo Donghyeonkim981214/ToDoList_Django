@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="POST" action="{% url 'users:profileupdate' %}">
+    <form method="POST" action="{% url 'users:profileupdate' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="hidden" name="next" value="{% url 'home:index' %}">
+        <div>
+            <a href="#">Change Password</a>
+        <div>
         <button>Update</button>
     </form>
 {% endblock content %}

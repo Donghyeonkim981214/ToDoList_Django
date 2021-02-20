@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.shortcuts import reverse
 
 class User(AbstractUser):
     bio = models.TextField(default="Write some details about yourself", blank=True, null=True)
@@ -20,3 +21,6 @@ class User(AbstractUser):
     )
 
     birthday = models.DateField(null = True)
+
+    def get_absolute_url(self):
+        return reverse("users:userprofile", kwargs={"pk": self.pk})
