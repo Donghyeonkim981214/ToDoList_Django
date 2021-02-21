@@ -39,7 +39,6 @@ class user_profile(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.kwargs)
         return context
 
 class profile_update(UpdateView):
