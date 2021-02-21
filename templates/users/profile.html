@@ -5,7 +5,8 @@
     <div>
         <div>
             {% if user.avatar %}
-            <div style="background-image: url({{user.avatar.url}});">
+            <div style="background-image: url({{ user.avatar.url }});">
+            <img src="{{ user.avatar.url }}"> 
             {% else %}
             <div>
                 <span>{{user.first_name|first}}</span>

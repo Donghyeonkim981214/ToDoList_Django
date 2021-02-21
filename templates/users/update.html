@@ -5,7 +5,7 @@
         {% csrf_token %}
         {{form.as_p}}
         <div>
-            <a href="#">Change Password</a>
+            <a href="{% url 'users:passwordupdate' %}">Change Password</a>
         <div>
         <button>Update</button>
     </form>
