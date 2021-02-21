@@ -10,6 +10,8 @@ from . import models as user_models
 
 from django.views.generic import UpdateView
 
+from django.contrib.auth.views import PasswordChangeView
+
 from . import forms
 
 class log_in(LoginView):
@@ -54,3 +56,8 @@ class profile_update(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+class password_update(PasswordChangeView):
+
+    template_name = "users/update_password.html"
+    success_url = reverse_lazy('users:login')
