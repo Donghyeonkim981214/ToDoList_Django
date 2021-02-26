@@ -3,9 +3,8 @@
 {% block content %}
         <div class="content">
             <div class="messageDiv">
-                <form action="./createTodo/" method="POST">{% csrf_token %}
+                <form action="{% url 'home:TodoCreate' %}" method="POST">{% csrf_token %}
                     <div class="input-group">
-                        <input id="todoContent" name="todoContent" type="text" class="form-control" placeholder="메모할 내용을 적어주세요">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="submit">메모하기!</button>
                         </span>
@@ -13,19 +12,19 @@
                 </form>
             </div>
 
-            <div class="toDoDiv">
+            <div class="toDoDiv" style="width: 100%;">
                 <ul class="list-group">
-                    {% for todo in todos %}
+                    {% for todo in guest_todo %}
                     {% if todo.isDone == False %}
-                    <form action="./doneTodo/" method="GET">
-                        <div class="input-group" name='todo1'>
-                            <li class="list-group-item">{{ todo.content }}</li>
-                            <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
-                            <span class="input-group-addon">
-                                <button type="submit" class="custom-btn btn btn-danger">완료</button>
-                            </span>
+                        <div class="input-group" style="margin-top: 0; margin-bottom: 10px;" name='todo1'>
+                            <li class="list-group-item" style="width: 100%;"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                            <form action="{% url 'home:TodoDelete' todo.id %}" method="POST">{% csrf_token %}
+                                <input type="hidden" id="todoNum" name="pk" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon" style="width: 10%;">
+                                    <button type="submit" class="custom-btn btn btn-danger">Remove</button>
+                                </span>
+                            </form>
                         </div>
-                    </form>
                     {% else %}
                     {% endif %}
                     {% endfor %}
