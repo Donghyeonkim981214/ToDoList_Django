@@ -2,13 +2,13 @@
 
 {% block content %}
         <div class="contant">
-            <div class="todobox">
-                <div class="toDoDiv">
+            <div class="todobox" style="justify-content: center;">
+                <div class="toDoDiv" style="width: 100%;">
                     <h2>{{ sub }}</h2>
-                    <ul class="list-group">
+                    <ul class="list-group" style="outline: none; border: none;">
                         {% for todo in object_list %}
-                        <div class="input-group" name='todo1'>
-                            <li class="list-group-item"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                        <div class="input-group" style="margin-top: 0; margin-bottom: 40px;" name='todo1'>
+                            <li class="list-group-item" style="width: 100%;"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
                             {% if sub == 'Ings' %}
                             <form action="{% url 'home:TodoDone' %}" method="GET">
                                 <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
