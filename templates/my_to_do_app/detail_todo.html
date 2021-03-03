@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div>
+        <div>
+            <span>Content: {{todo.content}}</span>
+
+            <span>PostedDay: {{todo.PostedDay}}</span>
+
+            <span>Deadline: {{todo.Deadline}}</span>
+        </div>
+        {% if todo.isDone == False %} 
+            <a href="{% url 'home:TodoUpdate' todo.id %}">Edit ToDo</a>
+        {% endif %}
+    </div>
+{% endblock content %} 

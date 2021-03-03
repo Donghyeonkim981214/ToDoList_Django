@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="contant">
+            <div class="messageDiv">
+                <span class="input-group-btn">
+                    <a href="{% url 'home:TodoCreate' %}"><button class="btn btn-default" type="submit">메모하기!</button></a>
+                </span>
+            </div>
+            <div class="todobox">
+                <div class="toDoDiv">
+                    <ul class="list-group">
+                        <h2>ing...</h2>
+                        {% for todo in ings %}
+                        <div class="input-group" name='todo1'>
+                            <li class="list-group-item"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                            <form action="{% url 'home:TodoDone' %}" method="GET">
+                                <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-success">Done</button>
+                                </span>
+                            </form>
+                            <form action="{% url 'home:TodoDelete' todo.id %}" method="POST">{% csrf_token %}
+                                <input type="hidden" id="todoNum" name="pk" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-danger">Remove</button>
+                                </span>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'home:TodoList' 'ings' %}">all ings...</a>
+                </div>
+                <div class="toDoDiv">
+                    <ul class="list-group">
+                        <h2>Success!</h2>
+                        {% for todo in dones %}
+                        <div class="input-group" name='todo1'>
+                            <li class="list-group-item" style="width: 75%;"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                            <form action="{% url 'home:TodoDelete' todo.id %}" method="POST">{% csrf_token %}
+                                <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-danger">Remove</button>
+                                </span>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'home:TodoList' 'dones' %}">all successes...</a>
+                </div>
+                <div class="toDoDiv">
+                    <ul class="list-group">
+                        <h2>Fail</h2>
+                        {% for todo in failures %}
+                        <div class="input-group" name='todo1'>
+                            <li class="list-group-item"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                            <form action="{% url 'home:TodoDelete' todo.id %}" method="POST">{% csrf_token %}
+                                <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-danger">Remove</button>
+                                </span>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'home:TodoList' 'ends' %}">all ends...</a>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

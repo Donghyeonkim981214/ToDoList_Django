@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="POST" action="{% url 'users:signup' %}">
+    <form method="POST" action="{% url 'home:TodoUpdate' todo.id %}">
         {% csrf_token %}
         {{form.as_p}}
-        <button>Sign up</button>
+        <button>Update</button>
     </form>
 {% endblock content %}

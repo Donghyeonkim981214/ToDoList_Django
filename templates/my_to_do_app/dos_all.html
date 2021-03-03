@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="contant">
+            <div class="todobox" style="justify-content: center;">
+                <div class="toDoDiv" style="width: 100%;">
+                    <h2>{{ sub }}</h2>
+                    <ul class="list-group" style="outline: none; border: none;">
+                        {% for todo in object_list %}
+                        <div class="input-group" style="margin-top: 0; margin-bottom: 40px;" name='todo1'>
+                            <li class="list-group-item" style="width: 100%;"><a href="{% url 'home:TodoDetail' todo.id %}">{{ todo.content }}</a></li>
+                            {% if sub == 'Ings' %}
+                            <form action="{% url 'home:TodoDone' %}" method="GET">
+                                <input type="hidden" id="todoNum" name="todoNum" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-success">Done</button>
+                                </span>
+                            </form>
+                            {% endif %}
+                            <form action="{% url 'home:TodoDelete' todo.id %}" method="POST">{% csrf_token %}
+                                <input type="hidden" id="todoNum" name="pk" value="{{ todo.id }}"></input>
+                                <span class="input-group-addon">
+                                    <button type="submit" class="custom-btn btn btn-danger">Remove</button>
+                                </span>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+{% endblock content %}
